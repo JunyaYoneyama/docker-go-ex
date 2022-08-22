@@ -21,6 +21,7 @@ RUN go build -v -o app
 # 実行用にdebian buster-slim(普通のbusterより軽いやつ)を指定
 FROM debian:buster-slim
 # 作業ディレクトリを/appにする。
+ENV APP_HOME /app
 WORKDIR $APP_HOME
 # ビルドステージコンテナからビルドしたアプリケーションをコピー
 COPY --from=builder ./app ./
