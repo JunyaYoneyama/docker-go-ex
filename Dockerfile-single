@@ -1,0 +1,16 @@
+FROM golang:1.18
+
+ENV APP_HOME /app
+WORKDIR $APP_HOME
+
+# 依存ライブラリファイルコピー
+COPY go.* .
+# 依存ライブラリダウンロード
+RUN go mod download
+
+# ソースファイルコピー
+COPY . .
+# ソースファイルを「app」という名前にビルド
+RUN go build -v -o app
+
+CMD ./app
